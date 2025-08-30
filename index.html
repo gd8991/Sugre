@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugre | Gentle Luxury Solid Perfumes - Crafted for Sensitive Souls</title>
+    <meta name="description" content="Discover Sugre's revolutionary solid perfumes. Alcohol-free, travel-friendly luxury fragrances designed for sensitive skin.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&family=Futura+PT:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- GSAP & Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --pearl: #FAFAF8;
+            --gray: #6B6B6B;
+            --charcoal: #2C2C2C;
+            --blush: #FFE4CC;
+            --sage: #E8EDE7;
+            --deep-gold: #B8941F;
+            --white: #FFFFFF;
+            
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-accent: 'Futura PT', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--charcoal);
+            background: var(--pearl);
+            overflow-x: hidden;
+            overflow-y: auto;
+            line-height: 1.6;
+        }
+        
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--pearl);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .loader-content {
+            text-align: center;
+        }
+        
+        .loader-logo {
+            font-family: var(--font-display);
+            font-size: 48px;
+            color: var(--gold);
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+        }
+        
+        .loader-bar {
+            width: 200px;
+            height: 2px;
+            background: var(--sage);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .loader-progress {
+            height: 100%;
+            background: var(--gold);
+            width: 0;
+            animation: loadProgress 2s forwards;
+        }
+        
+        @keyframes loadProgress {
+            to { width: 100%; }
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9997;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        .custom-cursor.hover {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Animated Background Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 50%;
+            animation: particleFloat 20s infinite linear;
+        }
+        
+        @keyframes particleFloat {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            padding: 15px 40px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-family: var(--font-display);
+            font-size: 32px;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 4px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            position: relative;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .menu-toggle span {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--charcoal);
+            transition: all 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        .menu-toggle span:nth-child(1) { top: 0; }
+        .menu-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .menu-toggle span:nth-child(3) { bottom: 0; }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translateY(9px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-9px);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--pearl), var(--white));
+            z-index: 999;
+            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu-content {
+            padding: 100px 40px 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mobile-nav {
+            flex: 1;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.5s ease;
+        }
+        
+        .mobile-menu.active .mobile-nav-links li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .mobile-menu.active .mobile-nav-links li:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-menu.active .mobile-nav-links li:nth-child(5) { transition-delay: 0.5s; }
+        
+        .mobile-nav-links a {
+            font-size: 36px;
+            font-family: var(--font-display);
+            color: var(--charcoal);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero-bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blush), var(--sage));
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -100px;
+        }
+        
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -50px;
+            left: -50px;
+            animation-delay: -5s;
+        }
+        
+        .circle-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -10s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-30px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(30px) rotate(240deg);
+            }
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            padding: 0 40px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(48px, 8vw, 96px);
+            line-height: 1.1;
+            color: var(--charcoal);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .typed-text {
+            color: var(--gold);
+            font-weight: 400;
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .btn {
+            padding: 16px 40px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: var(--gold);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--deep-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+        }
+        
+        .btn-outline:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            animation: fadeIn 1s 2s forwards;
+        }
+        
+        .scroll-text {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray);
+        }
+        
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: var(--gray);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: var(--gold);
+            animation: scrollDown 2s infinite;
+        }
+        
+        @keyframes scrollDown {
+            to {
+                transform: translateY(40px);
+            }
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Story Section */
+        .story-section {
+            padding: 120px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .story-content {
+            opacity: 0;
+        }
+        
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .story-title {
+            font-family: var(--font-display);
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: var(--charcoal);
+        }
+        
+        .story-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        
+        .story-visual {
+            position: relative;
+            opacity: 0;
+        }
+        
+        .story-image {
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, var(--blush), var(--sage));
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .perfume-showcase {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+        }
+        
+        .perfume-tin-mini {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #f9f9f9, #e0e0e0);
+            border-radius: 50%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .perfume-tin-mini::before {
+            content: 'SUGRE';
+            font-family: var(--font-display);
+            font-size: 36px;
+            color: var(--gold);
+            letter-spacing: 6px;
+        }
+        
+        /* Products Section */
+        .products-section {
+            padding: 120px 40px;
+            background: var(--white);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 56px;
+            margin-bottom: 20px;
+            color: var(--charcoal);
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--gray);
+            font-weight: 300;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: var(--pearl);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            cursor: pointer;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            height: 300px;
+            background: linear-gradient(135deg, var(--blush), var(--sage));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .coming-soon-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(3px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover .coming-soon-overlay {
+            opacity: 1;
+        }
+        
+        .product-info {
+            padding: 30px;
+        }
+        
+        .product-name {
+            font-family: var(--font-display);
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--charcoal);
+        }
+        
+        .product-description {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .product-notes {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .note-tag {
+            padding: 5px 15px;
+            background: var(--sage);
+            border-radius: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+        }
+        
+        .notify-btn {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.3s ease;
+        }
+        
+        .notify-btn:hover {
+            gap: 10px;
+        }
+        
+        /* Product Modal */
+        .product-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .product-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            animation: modalSlideIn 0.5s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: var(--gold);
+            color: white;
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+        
+        .modal-image {
+            background: linear-gradient(135deg, var(--blush), var(--sage));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .modal-image-perfume {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(145deg, #f9f9f9, #e0e0e0);
+            border-radius: 50%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 36px;
+            color: var(--gold);
+            letter-spacing: 6px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .modal-info {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .modal-title {
+            font-family: var(--font-display);
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: var(--charcoal);
+        }
+        
+        .modal-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        
+        .modal-notes {
+            margin-bottom: 30px;
+        }
+        
+        .modal-notes h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .notes-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .note-item {
+            padding: 8px 20px;
+            background: var(--pearl);
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        .modal-cta {
+            display: flex;
+            gap: 20px;
+        }
+        
+        /* Education Section */
+        .education-section {
+            padding: 120px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .education-tabs {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--sage);
+            overflow-x: auto;
+        }
+        
+        .tab {
+            padding: 15px 0;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+        }
+        
+        .tab.active {
+            color: var(--charcoal);
+        }
+        
+        .tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .tab.active::after {
+            width: 100%;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .education-text h3 {
+            font-family: var(--font-display);
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--charcoal);
+        }
+        
+        .education-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .education-visual {
+            background: var(--sage);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .icon-large {
+            font-size: 120px;
+            color: var(--gold);
+            opacity: 0.5;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 120px 40px;
+            background: linear-gradient(180deg, var(--white), var(--pearl));
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-intro {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 60px;
+            line-height: 1.8;
+        }
+        
+        .contact-form {
+            display: grid;
+            gap: 30px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 1px solid var(--sage);
+            background: transparent;
+            font-size: 16px;
+            font-family: var(--font-body);
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .form-label {
+            position: absolute;
+            left: 0;
+            top: 15px;
+            color: var(--gray);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label,
+        .form-textarea:focus + .form-label,
+        .form-textarea:not(:placeholder-shown) + .form-label {
+            top: -10px;
+            font-size: 12px;
+            color: var(--gold);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-submit {
+            margin-top: 30px;
+        }
+        
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 80px 40px;
+            background: var(--charcoal);
+            color: white;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-title {
+            font-family: var(--font-display);
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-text {
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .newsletter-input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .newsletter-submit {
+            padding: 15px 30px;
+            background: var(--gold);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-submit:hover {
+            background: var(--deep-gold);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 40px 30px;
+            background: var(--charcoal);
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand .footer-logo {
+            font-family: var(--font-display);
+            font-size: 36px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+        }
+        
+        .footer-brand p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .footer-column h4 {
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            opacity: 0.6;
+            font-size: 14px;
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 3000;
+            transition: bottom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .toast.show {
+            bottom: 40px;
+        }
+        
+        .toast-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .toast-message {
+            font-size: 14px;
+            color: var(--charcoal);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero-content {
+                padding: 0 20px;
+            }
+            
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-info {
+                padding: 40px;
+            }
+            
+            .custom-cursor,
+            .cursor-follower {
+                display: none;
+            }
+        }
+        
+        /* Initial state for animations - removed to ensure content is always visible */
+        
+        /* Fade in animations - content visible by default now */
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stagger {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
+        }
+        
+        .stagger.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor (Desktop only) -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <!-- Animated Background Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Loading Screen - COMMENTED OUT FOR TESTING -->
+    <!--
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">SUGRE</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+    -->
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <nav class="mobile-nav">
+                <ul class="mobile-nav-links">
+                    <li><a href="#home" class="mobile-link">Home</a></li>
+                    <li><a href="#story" class="mobile-link">Our Story</a></li>
+                    <li><a href="#products" class="mobile-link">Collection</a></li>
+                    <li><a href="#education" class="mobile-link">Education</a></li>
+                    <li><a href="#contact" class="mobile-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">SUGRE</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#story">Our Story</a></li>
+                <li><a href="#products">Collection</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="hero-bg-circle circle-1"></div>
+            <div class="hero-bg-circle circle-2"></div>
+            <div class="hero-bg-circle circle-3"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Fragrance, Reimagined <span class="typed-text"></span></h1>
+            <p class="hero-subtitle">Discover solid perfumes crafted for sensitive souls and refined tastes</p>
+            <div class="cta-group">
+                <a href="#products" class="btn btn-primary">Explore Collection</a>
+                <a href="#story" class="btn btn-outline">Our Story</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span class="scroll-text">Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+    
+    <!-- Story Section -->
+    <section class="story-section" id="story">
+        <div class="story-grid">
+            <div class="story-content fade-in">
+                <div class="section-label">Our Beginning</div>
+                <h2 class="story-title">Born from a Mother's Need for Gentleness</h2>
+                <p class="story-text">
+                    When our founder couldn't wear traditional perfumes during pregnancy, she and her husband crafted something revolutionary—solid perfumes that honor both sophistication and sensitivity. Each hand-poured creation delivers whisper-soft scents that embrace rather than overwhelm, proving that true luxury lies in thoughtful restraint.
+                </p>
+                <p class="story-text">
+                    Today, Sugre continues this legacy of gentle luxury, creating alcohol-free, travel-friendly solid perfumes that tell your story without overwhelming your senses or those around you.
+                </p>
+                <a href="#products" class="btn btn-primary">Discover Our Collection</a>
+            </div>
+            <div class="story-visual fade-in">
+                <div class="story-image">
+                    <div class="perfume-showcase">
+                        <div class="perfume-tin-mini"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Our Collection</h2>
+            <p class="section-subtitle">Three signature scents, each telling its own gentle story</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card stagger" onclick="openModal('Dawn Garden')">
+                <div class="product-image">
+                    <div class="coming-soon-overlay">Coming Soon</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Dawn Garden</h3>
+                    <p class="product-description">A fresh, dewy fragrance that captures the first light of morning</p>
+                    <div class="product-notes">
+                        <span class="note-tag">Citrus</span>
+                        <span class="note-tag">White Tea</span>
+                        <span class="note-tag">Jasmine</span>
+                    </div>
+                    <a href="#" class="notify-btn" onclick="event.stopPropagation(); notifyMe(); return false;">Notify Me →</a>
+                </div>
+            </div>
+            <div class="product-card stagger" onclick="openModal('Velvet Woods')">
+                <div class="product-image">
+                    <div class="coming-soon-overlay">Coming Soon</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Velvet Woods</h3>
+                    <p class="product-description">Warm embrace of sandalwood and amber, grounding and serene</p>
+                    <div class="product-notes">
+                        <span class="note-tag">Sandalwood</span>
+                        <span class="note-tag">Amber</span>
+                        <span class="note-tag">Vanilla</span>
+                    </div>
+                    <a href="#" class="notify-btn" onclick="event.stopPropagation(); notifyMe(); return false;">Notify Me →</a>
+                </div>
+            </div>
+            <div class="product-card stagger" onclick="openModal('Rose Whisper')">
+                <div class="product-image">
+                    <div class="coming-soon-overlay">Coming Soon</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Rose Whisper</h3>
+                    <p class="product-description">Delicate petals and soft musk create an intimate, romantic aura</p>
+                    <div class="product-notes">
+                        <span class="note-tag">Rose</span>
+                        <span class="note-tag">White Musk</span>
+                        <span class="note-tag">Peony</span>
+                    </div>
+                    <a href="#" class="notify-btn" onclick="event.stopPropagation(); notifyMe(); return false;">Notify Me →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Product Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">✕</div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <div class="modal-image-perfume">SUGRE</div>
+                </div>
+                <div class="modal-info">
+                    <h3 class="modal-title" id="modalTitle">Dawn Garden</h3>
+                    <p class="modal-description" id="modalDescription">
+                        A fresh, dewy fragrance that captures the first light of morning.
+                    </p>
+                    <div class="modal-notes">
+                        <h4>Scent Profile</h4>
+                        <div class="notes-list" id="modalNotes">
+                            <span class="note-item">Top: Bergamot</span>
+                        </div>
+                    </div>
+                    <div class="modal-cta">
+                        <button class="btn btn-primary" onclick="notifyMe()">Notify Me</button>
+                        <button class="btn btn-outline" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Education Section -->
+    <section class="education-section" id="education">
+        <div class="section-header fade-in">
+            <h2 class="section-title">The Art of Solid Perfume</h2>
+            <p class="section-subtitle">Master the gentle application of your signature scent</p>
+        </div>
+        
+        <div class="education-tabs">
+            <a href="#" class="tab active" data-tab="application">Application</a>
+            <a href="#" class="tab" data-tab="layering">Layering</a>
+            <a href="#" class="tab" data-tab="ingredients">Ingredients</a>
+            <a href="#" class="tab" data-tab="care">Care & Storage</a>
+        </div>
+        
+        <div class="tab-content active" id="application">
+            <div class="education-grid">
+                <div class="education-text fade-in">
+                    <h3>The Perfect Application</h3>
+                    <p>Warm the solid perfume between your fingertips for a few seconds. This gentle heat activates the natural waxes and releases the fragrance.</p>
+                    <p>Apply to pulse points: wrists, behind ears, collarbones, and inner elbows. These warm areas help diffuse the scent naturally throughout the day.</p>
+                    <p>Less is more with solid perfume. Start with a small amount and build as desired. The beauty lies in its subtlety.</p>
+                </div>
+                <div class="education-visual fade-in">
+                    <div class="icon-large">✨</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="layering">
+            <div class="education-grid">
+                <div class="education-text">
+                    <h3>Create Your Signature</h3>
+                    <p>Solid perfumes are perfect for layering. Start with lighter, fresher scents and build towards deeper, warmer notes.</p>
+                    <p>Apply different scents to different pulse points to create a unique fragrance journey that evolves throughout your day.</p>
+                    <p>Our collection is designed to complement each other beautifully, allowing endless personalization.</p>
+                </div>
+                <div class="education-visual">
+                    <div class="icon-large">🌸</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="ingredients">
+            <div class="education-grid">
+                <div class="education-text">
+                    <h3>Pure & Gentle</h3>
+                    <p>Our formula begins with natural waxes including beeswax and shea butter, creating a nourishing base that's kind to your skin.</p>
+                    <p>Essential oils and premium fragrance compounds are carefully balanced to deliver sophisticated scents without overwhelming.</p>
+                    <p>Free from alcohol, parabens, and harsh chemicals. Every ingredient is chosen for both its aromatic beauty and skin-loving properties.</p>
+                </div>
+                <div class="education-visual">
+                    <div class="icon-large">🌿</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="care">
+            <div class="education-grid">
+                <div class="education-text">
+                    <h3>Preserve Your Perfume</h3>
+                    <p>Store your solid perfume in a cool, dry place away from direct sunlight. Heat can soften the balm and affect the fragrance.</p>
+                    <p>Keep the tin closed when not in use to preserve the scent's integrity and prevent contamination.</p>
+                    <p>With proper care, your solid perfume will maintain its quality for 12-18 months, though we suspect you'll use it long before then.</p>
+                </div>
+                <div class="education-visual">
+                    <div class="icon-large">💎</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="contact-intro">
+                    We'd love to hear from you. Whether you have questions about our gentle formulations or simply want to share your story, we're here.
+                </p>
+            </div>
+            
+            <form class="contact-form fade-in">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder=" " required>
+                        <label class="form-label">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-input" placeholder=" " required>
+                        <label class="form-label">Your Email</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder=" ">
+                    <label class="form-label">Subject</label>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-textarea" placeholder=" " required></textarea>
+                    <label class="form-label">Your Message</label>
+                </div>
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-container fade-in">
+            <h3 class="newsletter-title">Stay in Touch</h3>
+            <p class="newsletter-text">Be the first to know about our launch and receive exclusive early access</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                <button type="submit" class="newsletter-submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">SUGRE</div>
+                <p>Gentle luxury solid perfumes crafted for sensitive souls. Born from a mother's need for beauty without compromise.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <ul class="footer-links">
+                    <li><a href="#products">Collection</a></li>
+                    <li><a href="#story">Our Story</a></li>
+                    <li><a href="#education">How to Use</a></li>
+                    <li><a href="#">Gift Sets</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sugre. All rights reserved. | Crafted with love for gentle souls</p>
+        </div>
+    </footer>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">✓</div>
+        <div class="toast-message" id="toastMessage">Success! You're on the list.</div>
+    </div>
+    
+    <script>
+        // LOADING JAVASCRIPT COMMENTED OUT FOR TESTING
+        /*
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                if (loader) {
+                    loader.classList.add('hidden');
+                }
+                document.body.style.overflow = '';
+                
+                if (typeof gsap !== 'undefined') {
+                    initAnimations();
+                } else {
+                    document.querySelectorAll('.fade-in, .stagger, .hero-title, .hero-subtitle, .cta-group').forEach(el => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                        el.style.visibility = 'visible';
+                    });
+                }
+            }, 2000);
+        });
+        */
+        
+        // Generate floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (20 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+        
+        // Enhanced cursor effect (desktop only)
+        if (window.innerWidth > 768) {
+            const cursor = document.querySelector('.custom-cursor');
+            const follower = document.querySelector('.cursor-follower');
+            
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                setTimeout(() => {
+                    follower.style.left = e.clientX + 'px';
+                    follower.style.top = e.clientY + 'px';
+                }, 100);
+            });
+            
+            // Add hover effect to interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, .product-card');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        }
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            // Only disable scroll on mobile menu open, ensure it's restored on close
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+        
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Initialize animations - now optional since content is visible by default
+        function initAnimations() {
+            // Only add animations if GSAP is available, content is already visible
+            if (typeof gsap === 'undefined') {
+                console.log('GSAP not available, content already visible');
+                return;
+            }
+            
+            // Hero animations with GSAP - content already visible, just add subtle effects
+            gsap.from('.hero-title', {
+                duration: 1,
+                y: 30,
+                opacity: 0,
+                ease: 'power3.out'
+            });
+            
+            gsap.from('.hero-subtitle', {
+                duration: 1,
+                y: 30,
+                opacity: 0,
+                delay: 0.3,
+                ease: 'power3.out'
+            });
+            
+            gsap.from('.cta-group', {
+                duration: 1,
+                y: 30,
+                opacity: 0,
+                delay: 0.6,
+                ease: 'power3.out'
+            });
+            
+            // Typed.js for hero text
+            if (typeof Typed !== 'undefined') {
+                new Typed('.typed-text', {
+                    strings: ['Gently', 'Thoughtfully', 'Beautifully'],
+                    typeSpeed: 100,
+                    backSpeed: 50,
+                    backDelay: 2000,
+                    loop: true
+                });
+            }
+            
+            // Register ScrollTrigger plugin
+            if (gsap.registerPlugin && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Fade in elements - content already visible, just add animation effects
+                gsap.utils.toArray('.fade-in').forEach(element => {
+                    gsap.from(element, {
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none none'
+                        },
+                        duration: 1,
+                        y: 30,
+                        opacity: 0,
+                        ease: 'power3.out'
+                    });
+                });
+                
+                // Stagger animations for product cards - content visible, add effects
+                ScrollTrigger.batch('.stagger', {
+                    start: 'top 80%',
+                    onEnter: batch => gsap.from(batch, {
+                        opacity: 0,
+                        y: 30,
+                        duration: 0.8,
+                        stagger: 0.2,
+                        ease: 'power3.out'
+                    })
+                });
+                
+                // Parallax effect for story image
+                gsap.to('.perfume-tin-mini', {
+                    scrollTrigger: {
+                        trigger: '.story-visual',
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: 1
+                    },
+                    y: -50,
+                    rotation: 10,
+                    ease: 'none'
+                });
+            } else {
+                // ScrollTrigger not available - content is already visible, no action needed
+                console.log('ScrollTrigger not available - content already visible');
+            }
+        }
+        
+        // Product Modal Functions
+        function openModal(productName) {
+            const modal = document.getElementById('productModal');
+            const products = {
+                'Dawn Garden': {
+                    description: 'A fresh, dewy fragrance that captures the first light of morning. This delicate blend opens with sparkling citrus notes, flows into a heart of white tea and jasmine, and settles into a soft, clean base that lingers gently on your skin.',
+                    notes: ['Top: Bergamot', 'Heart: White Tea', 'Base: Soft Musk']
+                },
+                'Velvet Woods': {
+                    description: 'Warm embrace of sandalwood and amber, grounding and serene. This sophisticated blend evokes walking through a sun-dappled forest, with rich woody notes balanced by creamy vanilla and a touch of spice.',
+                    notes: ['Top: Cardamom', 'Heart: Sandalwood', 'Base: Amber']
+                },
+                'Rose Whisper': {
+                    description: 'Delicate petals and soft musk create an intimate, romantic aura. This feminine fragrance captures the essence of a secret garden at dawn, where roses bloom with quiet elegance.',
+                    notes: ['Top: Pink Pepper', 'Heart: Damask Rose', 'Base: White Musk']
+                }
+            };
+            
+            const product = products[productName];
+            if (product) {
+                document.getElementById('modalTitle').textContent = productName;
+                document.getElementById('modalDescription').textContent = product.description;
+                
+                const notesContainer = document.getElementById('modalNotes');
+                notesContainer.innerHTML = product.notes.map(note => 
+                    `<span class="note-item">${note}</span>`
+                ).join('');
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+            // Always ensure scrolling is restored
+            document.body.style.overflow = '';
+        }
+        
+        function notifyMe() {
+            showToast('You\'ll be the first to know when this scent launches!');
+        }
+        
+        // Toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Form submissions
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Thank you for your message! We\'ll respond within 24 hours.');
+            e.target.reset();
+        });
+        
+        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Welcome to the Sugre family! You\'ll be the first to know when we launch.');
+            e.target.reset();
+        });
+        
+        // Magnetic hover effect for buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mousemove', (e) => {
+                const rect = button.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translate(0, 0)';
+            });
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            // ESC key closes modals and mobile menu
+            if (e.key === 'Escape') {
+                closeModal();
+                if (mobileMenu.classList.contains('active')) {
+                    menuToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                }
+                // Always ensure scrolling is restored when ESC is pressed
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Scroll progress indicator
+        const scrollProgress = document.createElement('div');
+        scrollProgress.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #D4AF37, #B8941F);
+            z-index: 10000;
+            transition: width 0.3s ease;
+            width: 0%;
+        `;
+        document.body.appendChild(scrollProgress);
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+        
+        // Intersection Observer for advanced animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.fade-in, .stagger').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                const perfData = window.performance.timing;
+                const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+                console.log(`Sugre website loaded in: ${pageLoadTime}ms`);
+            });
+        }

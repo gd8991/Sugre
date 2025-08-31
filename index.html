@@ -47,7 +47,6 @@
             color: var(--charcoal);
             background: var(--pearl);
             overflow-x: hidden;
-            overflow-y: auto;
             line-height: 1.6;
         }
         
@@ -69,8 +68,6 @@
         .loader.hidden {
             opacity: 0;
             visibility: hidden;
-            pointer-events: none;
-            z-index: -1;
         }
         
         .loader-content {
@@ -1300,12 +1297,18 @@
             }
         }
         
-        /* Initial state for animations - removed to ensure content is always visible */
+        /* Initial state for animations */
+        .hero-title,
+        .hero-subtitle,
+        .cta-group {
+            opacity: 0;
+            transform: translateY(30px);
+        }
         
-        /* Fade in animations - content visible by default now */
+        /* Fade in animations */
         .fade-in {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 0;
+            transform: translateY(30px);
             transition: all 0.8s ease;
         }
         
@@ -1315,8 +1318,8 @@
         }
         
         .stagger {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 0;
+            transform: translateY(30px);
             transition: all 0.8s ease;
         }
         
@@ -1334,8 +1337,7 @@
     <!-- Animated Background Particles -->
     <div class="particles" id="particles"></div>
     
-    <!-- Loading Screen - COMMENTED OUT FOR TESTING -->
-    <!--
+    <!-- Loading Screen -->
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-logo">SUGRE</div>
@@ -1344,7 +1346,6 @@
             </div>
         </div>
     </div>
-    -->
     
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
@@ -1674,28 +1675,34 @@
     </div>
     
     <script>
-        // LOADING JAVASCRIPT COMMENTED OUT FOR TESTING
-        /*
+        // Wait for all scripts to load
+        let gsapLoaded = false;
+        let typedLoaded = false;
+        
+        // Check if libraries are loaded
+        function checkLibraries() {
+            if (typeof gsap !== 'undefined') gsapLoaded = true;
+            if (typeof Typed !== 'undefined') typedLoaded = true;
+            
+            if (gsapLoaded && typedLoaded) {
+                return true;
+            }
+            return false;
+        }
+        
+        // Loader
         window.addEventListener('load', () => {
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                if (loader) {
-                    loader.classList.add('hidden');
+            // Check if libraries are loaded, if not wait
+            let checkInterval = setInterval(() => {
+                if (checkLibraries()) {
+                    clearInterval(checkInterval);
+                    setTimeout(() => {
+                        document.getElementById('loader').classList.add('hidden');
+                        initAnimations();
+                    }, 2000);
                 }
-                document.body.style.overflow = '';
-                
-                if (typeof gsap !== 'undefined') {
-                    initAnimations();
-                } else {
-                    document.querySelectorAll('.fade-in, .stagger, .hero-title, .hero-subtitle, .cta-group').forEach(el => {
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
-                        el.style.visibility = 'visible';
-                    });
-                }
-            }, 2000);
+            }, 100);
         });
-        */
         
         // Generate floating particles
         function createParticles() {
@@ -1754,12 +1761,7 @@
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             mobileMenu.classList.toggle('active');
-            // Only disable scroll on mobile menu open, ensure it's restored on close
-            if (mobileMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
         
         mobileLinks.forEach(link => {
@@ -1784,34 +1786,38 @@
             });
         });
         
-        // Initialize animations - now optional since content is visible by default
+        // Initialize animations
         function initAnimations() {
-            // Only add animations if GSAP is available, content is already visible
+            // Check if GSAP is available
             if (typeof gsap === 'undefined') {
-                console.log('GSAP not available, content already visible');
+                console.error('GSAP not loaded');
                 return;
             }
             
-            // Hero animations with GSAP - content already visible, just add subtle effects
-            gsap.from('.hero-title', {
+            // Hero animations with GSAP
+            gsap.set('.hero-title', { opacity: 0, y: 30 });
+            gsap.set('.hero-subtitle', { opacity: 0, y: 30 });
+            gsap.set('.cta-group', { opacity: 0, y: 30 });
+            
+            gsap.to('.hero-title', {
                 duration: 1,
-                y: 30,
-                opacity: 0,
+                y: 0,
+                opacity: 1,
                 ease: 'power3.out'
             });
             
-            gsap.from('.hero-subtitle', {
+            gsap.to('.hero-subtitle', {
                 duration: 1,
-                y: 30,
-                opacity: 0,
+                y: 0,
+                opacity: 1,
                 delay: 0.3,
                 ease: 'power3.out'
             });
             
-            gsap.from('.cta-group', {
+            gsap.to('.cta-group', {
                 duration: 1,
-                y: 30,
-                opacity: 0,
+                y: 0,
+                opacity: 1,
                 delay: 0.6,
                 ease: 'power3.out'
             });
@@ -1831,9 +1837,11 @@
             if (gsap.registerPlugin && typeof ScrollTrigger !== 'undefined') {
                 gsap.registerPlugin(ScrollTrigger);
                 
-                // Fade in elements - content already visible, just add animation effects
+                // Fade in elements
                 gsap.utils.toArray('.fade-in').forEach(element => {
-                    gsap.from(element, {
+                    gsap.set(element, { opacity: 0, y: 30 });
+                    
+                    gsap.to(element, {
                         scrollTrigger: {
                             trigger: element,
                             start: 'top 80%',
@@ -1841,18 +1849,20 @@
                             toggleActions: 'play none none none'
                         },
                         duration: 1,
-                        y: 30,
-                        opacity: 0,
+                        y: 0,
+                        opacity: 1,
                         ease: 'power3.out'
                     });
                 });
                 
-                // Stagger animations for product cards - content visible, add effects
+                // Stagger animations for product cards
+                gsap.set('.stagger', { opacity: 0, y: 30 });
+                
                 ScrollTrigger.batch('.stagger', {
                     start: 'top 80%',
-                    onEnter: batch => gsap.from(batch, {
-                        opacity: 0,
-                        y: 30,
+                    onEnter: batch => gsap.to(batch, {
+                        opacity: 1,
+                        y: 0,
                         duration: 0.8,
                         stagger: 0.2,
                         ease: 'power3.out'
@@ -1872,8 +1882,11 @@
                     ease: 'none'
                 });
             } else {
-                // ScrollTrigger not available - content is already visible, no action needed
-                console.log('ScrollTrigger not available - content already visible');
+                // Fallback if ScrollTrigger is not available
+                document.querySelectorAll('.fade-in, .stagger').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
             }
         }
         
@@ -1913,7 +1926,6 @@
         function closeModal() {
             const modal = document.getElementById('productModal');
             modal.classList.remove('active');
-            // Always ensure scrolling is restored
             document.body.style.overflow = '';
         }
         
@@ -1988,9 +2000,8 @@
                 if (mobileMenu.classList.contains('active')) {
                     menuToggle.classList.remove('active');
                     mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
                 }
-                // Always ensure scrolling is restored when ESC is pressed
-                document.body.style.overflow = '';
             }
         });
         
@@ -2024,7 +2035,7 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
@@ -2037,8 +2048,13 @@
         // Performance monitoring
         if ('performance' in window) {
             window.addEventListener('load', () => {
-                const perfData = window.performance.timing;
-                const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-                console.log(`Sugre website loaded in: ${pageLoadTime}ms`);
+                setTimeout(() => {
+                    const perfData = window.performance.timing;
+                    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+                    console.log(`Sugre website loaded in: ${pageLoadTime}ms`);
+                }, 0);
             });
         }
+    </script>
+</body>
+</html>

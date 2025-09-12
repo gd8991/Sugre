@@ -3,76 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sugre | Gentle Luxury Solid Perfumes - Crafted for Sensitive Souls</title>
-    <meta name="description" content="Discover Sugre's revolutionary solid perfumes. Alcohol-free, travel-friendly luxury fragrances designed for sensitive skin.">
+    <title>Sugraé  - Where Darkness Meets Luxury</title>
+    <meta name="description" content="Experience Sugraé 's exclusive collection of solid perfumes. Crafted in darkness, revealed in luxury. Limited editions for the bold and confident.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&family=Futura+PT:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@200;300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap&subset=latin,latin-ext" rel="stylesheet">
     
     <!-- GSAP & Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     
     <style>
         :root {
+            --midnight: #0A0A0A;
+            --pure-black: #000000;
             --gold: #D4AF37;
-            --pearl: #FAFAF8;
-            --gray: #6B6B6B;
-            --charcoal: #2C2C2C;
-            --blush: #FFE4CC;
-            --sage: #E8EDE7;
-            --deep-gold: #B8941F;
+            --champagne-gold: #F7E7CE;
             --white: #FFFFFF;
+            --soft-white: #F5F5F5;
+            --gray: #808080;
+            --light-gray: #B0B0B0;
             
-            /* Enhanced color palette */
-            --gold-light: #E5C247;
-            --gold-gradient: linear-gradient(135deg, #D4AF37, #F4D03F, #B8941F);
-            --luxury-gradient: linear-gradient(135deg, #D4AF37 0%, #E5C247 50%, #B8941F 100%);
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --shadow-luxury: 0 20px 60px rgba(212, 175, 55, 0.15);
-            --shadow-deep: 0 25px 80px rgba(0, 0, 0, 0.15);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+            --font-serif: 'Libre Baskerville', serif;
             
-            --font-display: 'Playfair Display', serif;
-            --font-body: 'Inter', sans-serif;
-            --font-accent: 'Futura PT', sans-serif;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: none;
         }
         
         html {
             scroll-behavior: smooth;
+            background: var(--pure-black);
         }
         
         body {
             font-family: var(--font-body);
-            color: var(--charcoal);
-            background: var(--pearl);
+            font-weight: 300;
+            color: var(--white);
+            background: var(--pure-black);
             overflow-x: hidden;
             line-height: 1.6;
+            letter-spacing: 0.02em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
-        /* Loading Screen */
+        /* Custom Cursor - Ultra Luxury Style */
+        .cursor {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), inset 0 0 10px rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, var(--gold), var(--champagne-gold));
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10001;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+        }
+        
+        .cursor.hover {
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            border-width: 3px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), inset 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+        
+        a, button {
+            cursor: none;
+        }
+        
+        /* Luxe Loader */
         .loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--pearl);
+            background: var(--pure-black);
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s, visibility 0.5s;
+            transition: opacity 1s, visibility 1s;
         }
         
         .loader.hidden {
@@ -86,527 +128,406 @@
         
         .loader-logo {
             font-family: var(--font-display);
-            font-size: 48px;
+            font-size: 5rem;
             color: var(--gold);
-            letter-spacing: 8px;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeInUp 1s forwards;
+            letter-spacing: 1.5rem;
+            margin-right: -1.5rem;
+            animation: goldShimmer 2s ease-in-out infinite, breathe 3s ease-in-out infinite;
+            background: linear-gradient(45deg, var(--gold), var(--champagne-gold), var(--gold));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .loader-bar {
-            width: 200px;
-            height: 2px;
-            background: var(--sage);
-            border-radius: 2px;
-            overflow: hidden;
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
-        .loader-progress {
-            height: 100%;
-            background: var(--gold);
-            width: 0;
-            animation: loadProgress 2s forwards;
-        }
-        
-        @keyframes loadProgress {
-            to { width: 100%; }
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(-10px);
+        @keyframes goldShimmer {
+            0%, 100% { 
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 40px rgba(212, 175, 55, 0.3));
+            }
+            50% { 
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.8)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.4));
             }
         }
         
-        /* Custom Cursor */
-        .custom-cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9998;
-            transition: all 0.1s ease;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
+        .loader-text {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 200;
+            letter-spacing: 0.5rem;
+            color: var(--gold);
+            margin-top: 2rem;
+            text-transform: uppercase;
         }
         
-        .cursor-follower {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9997;
-            transition: all 0.3s ease;
-            transform: translate(-50%, -50%);
-        }
-        
-        .custom-cursor.hover {
-            width: 40px;
-            height: 40px;
-            background: rgba(212, 175, 55, 0.1);
-        }
-        
-        /* Animated Background Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(212, 175, 55, 0.2);
-            border-radius: 50%;
-            animation: particleFloat 20s infinite linear;
-        }
-        
-        @keyframes particleFloat {
-            from {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Header */
+        /* Header - Minimal Luxury */
         header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 20px 40px;
+            padding: 2rem 4rem;
             background: transparent;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         header.scrolled {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            box-shadow: var(--shadow-soft);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 4rem;
         }
         
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
+            max-width: 100%;
         }
         
         .logo {
             font-family: var(--font-display);
-            font-size: 32px;
-            background: var(--luxury-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2rem;
+            color: var(--gold);
             text-decoration: none;
-            letter-spacing: 4px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
+            letter-spacing: 0.5rem;
+            transition: var(--transition);
         }
         
         .logo:hover {
-            transform: scale(1.08) translateY(-2px);
-            filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.3));
-        }
-        
-        .logo::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--luxury-gradient);
-            border-radius: 8px;
-            opacity: 0;
-            z-index: -1;
-            filter: blur(12px);
-            transition: opacity 0.4s ease;
-        }
-        
-        .logo:hover::after {
-            opacity: 0.2;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.4);
+            transform: scale(1.05);
+            filter: brightness(1.2);
         }
         
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 3rem;
             list-style: none;
         }
         
         .nav-links a {
-            color: var(--charcoal);
+            color: var(--white);
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1.2px;
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.2rem;
             text-transform: uppercase;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 8px 16px;
-            border-radius: 20px;
-        }
-        
-        .nav-links a:hover {
-            color: var(--gold);
-            background: rgba(212, 175, 55, 0.05);
-            transform: translateY(-1px);
+            transition: var(--transition);
         }
         
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 2px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: -8px;
+            left: 0;
             width: 0;
-            height: 2px;
-            background: var(--luxury-gradient);
-            border-radius: 2px;
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
         }
         
         .nav-links a:hover::after {
-            width: 80%;
-        }
-        
-        .menu-toggle {
-            display: none;
-            position: relative;
-            width: 30px;
-            height: 20px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        
-        .menu-toggle span {
-            position: absolute;
             width: 100%;
-            height: 2px;
-            background: var(--charcoal);
-            transition: all 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
         }
         
-        .menu-toggle span:nth-child(1) { top: 0; }
-        .menu-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-        .menu-toggle span:nth-child(3) { bottom: 0; }
-        
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translateY(9px);
-        }
-        
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translateY(-9px);
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--pearl), var(--white));
-            z-index: 999;
-            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-            overflow-y: auto;
-        }
-        
-        .mobile-menu.active {
-            right: 0;
-        }
-        
-        .mobile-menu-content {
-            padding: 100px 40px 40px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .mobile-nav {
-            flex: 1;
-        }
-        
-        .mobile-nav-links {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .mobile-nav-links li {
-            margin-bottom: 30px;
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.5s ease;
-        }
-        
-        .mobile-menu.active .mobile-nav-links li {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .mobile-menu.active .mobile-nav-links li:nth-child(1) { transition-delay: 0.1s; }
-        .mobile-menu.active .mobile-nav-links li:nth-child(2) { transition-delay: 0.2s; }
-        .mobile-menu.active .mobile-nav-links li:nth-child(3) { transition-delay: 0.3s; }
-        .mobile-menu.active .mobile-nav-links li:nth-child(4) { transition-delay: 0.4s; }
-        .mobile-menu.active .mobile-nav-links li:nth-child(5) { transition-delay: 0.5s; }
-        
-        .mobile-nav-links a {
-            font-size: 36px;
-            font-family: var(--font-display);
-            color: var(--charcoal);
+        .nav-cta {
+            padding: 0.8rem 2rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.7rem;
+            letter-spacing: 0.15rem;
+            text-transform: uppercase;
             text-decoration: none;
-            display: inline-block;
-            position: relative;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
-        /* Hero Section */
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--pure-black);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.4), 0 5px 20px rgba(212, 175, 55, 0.2);
+            transform: translateY(-3px) scale(1.02);
+            border-color: var(--champagne-gold);
+        }
+        
+        /* Hero - Cinematic */
         .hero {
             height: 100vh;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             overflow: hidden;
+            background: var(--pure-black);
         }
         
-        .hero-bg {
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.3;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(212, 175, 55, 0.02) 50%, transparent 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(212, 175, 55, 0.1), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(212, 175, 55, 0.05), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(212, 175, 55, 0.08), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(212, 175, 55, 0.06), transparent);
+            background-size: 150px 150px, 200px 200px, 250px 250px, 300px 300px;
+            animation: sparkle 15s linear infinite;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-200px); }
+        }
+        
+        /* Video Background */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
             z-index: 1;
         }
         
-        .hero-bg-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--blush), var(--sage));
-            animation: float 20s ease-in-out infinite;
-            filter: blur(1px);
-            opacity: 0.6;
-        }
-        
-        .hero-bg-circle::before {
+        .hero-video::after {
             content: '';
             position: absolute;
-            inset: -2px;
-            background: linear-gradient(45deg, rgba(212, 175, 55, 0.1), transparent, rgba(212, 175, 55, 0.1));
-            border-radius: 50%;
-            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(0,0,0,0.4) 0%, 
+                rgba(0,0,0,0.6) 50%, 
+                rgba(0,0,0,0.8) 100%);
+            z-index: 2;
         }
         
-        .circle-1 {
-            width: 400px;
-            height: 400px;
-            top: -100px;
-            right: -100px;
-        }
-        
-        .circle-2 {
-            width: 300px;
-            height: 300px;
-            bottom: -50px;
-            left: -50px;
-            animation-delay: -5s;
-        }
-        
-        .circle-3 {
-            width: 200px;
-            height: 200px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-delay: -10s;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            33% {
-                transform: translateY(-30px) rotate(120deg);
-            }
-            66% {
-                transform: translateY(30px) rotate(240deg);
-            }
+        .video-element {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
         }
         
         .hero-content {
-            text-align: center;
-            max-width: 900px;
-            padding: 0 40px;
-            z-index: 2;
             position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.6rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            position: relative;
+        }
+        
+        .hero-subtitle::before,
+        .hero-subtitle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        
+        .hero-subtitle::before {
+            left: -60px;
+        }
+        
+        .hero-subtitle::after {
+            right: -60px;
         }
         
         .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(48px, 8vw, 96px);
-            line-height: 1.1;
-            color: var(--charcoal);
-            margin-bottom: 20px;
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 0.85;
+            letter-spacing: 0.08em;
+            background: linear-gradient(135deg, var(--white) 0%, var(--champagne-gold) 30%, var(--gold) 70%, var(--white) 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: gradientShift 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+            text-rendering: optimizeLegibility;
+            -webkit-font-feature-settings: "liga", "kern";
+            font-feature-settings: "liga", "kern";
+            unicode-bidi: normal;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Fallback for browsers with accent rendering issues */
+        @supports not (-webkit-background-clip: text) {
+            .hero-title {
+                color: var(--white);
+                text-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 20px rgba(212, 175, 55, 0.3);
+                -webkit-text-fill-color: unset;
+                background: none;
+            }
+        }
+        
+        .hero-tagline {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--light-gray);
+            margin-bottom: 3.5rem;
             opacity: 0;
             transform: translateY(30px);
-            text-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        
-        .hero-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 2px;
-            background: var(--luxury-gradient);
-            border-radius: 2px;
-            opacity: 0.7;
-        }
-        
-        .hero-subtitle {
-            font-size: 22px;
             line-height: 1.6;
-            color: var(--gray);
-            margin-bottom: 48px;
-            font-weight: 400;
-            opacity: 0;
-            transform: translateY(30px);
-            max-width: 700px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            letter-spacing: 0.3px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
         
-        .typed-text {
-            color: var(--gold);
-            font-weight: 400;
-        }
-        
-        .cta-group {
+        .hero-cta-group {
             display: flex;
-            gap: 24px;
+            gap: 2rem;
             justify-content: center;
             flex-wrap: wrap;
             opacity: 0;
             transform: translateY(30px);
-            margin-top: 16px;
         }
         
-        .btn {
-            padding: 18px 48px;
-            font-size: 14px;
-            letter-spacing: 1.5px;
+        .btn-luxe {
+            padding: 1.2rem 3rem;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.2rem;
             text-transform: uppercase;
             text-decoration: none;
             border: none;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 500;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
         }
         
-        .btn::before {
+        .btn-luxe-primary {
+            background: var(--gold);
+            color: var(--pure-black);
+        }
+        
+        .btn-luxe-primary::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.8s ease;
         }
         
-        .btn:hover::before {
+        .btn-luxe-primary:hover::before {
             left: 100%;
         }
         
-        .btn-primary {
-            background: var(--luxury-gradient);
-            color: white;
-            box-shadow: var(--shadow-luxury);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.4);
+        .btn-luxe-primary:hover {
+            box-shadow: 0 25px 70px rgba(212, 175, 55, 0.5), 0 10px 30px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px) scale(1.02);
             filter: brightness(1.1);
         }
         
-        .btn-outline {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            backdrop-filter: blur(10px);
+        .btn-luxe-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid var(--white);
         }
         
-        .btn-outline:hover {
-            background: var(--luxury-gradient);
-            color: white;
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: var(--shadow-luxury);
-            border-color: transparent;
+        .btn-luxe-outline:hover {
+            background: var(--white);
+            color: var(--pure-black);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2), 0 5px 15px rgba(255, 255, 255, 0.1);
+            border-color: var(--champagne-gold);
         }
         
+        /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 40px;
+            bottom: 3rem;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            z-index: 4;
             opacity: 0;
-            animation: fadeIn 1s 2s forwards;
+            animation: fadeInUp 1s 3s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(-10px);
+            }
         }
         
         .scroll-text {
-            font-size: 12px;
+            font-size: 0.65rem;
+            letter-spacing: 0.2rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gray);
+            color: var(--gold);
+            writing-mode: vertical-lr;
         }
         
         .scroll-line {
             width: 1px;
-            height: 40px;
-            background: var(--gray);
+            height: 60px;
+            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+            margin: 1rem auto 0;
             position: relative;
             overflow: hidden;
         }
@@ -614,241 +535,194 @@
         .scroll-line::after {
             content: '';
             position: absolute;
-            top: 0;
+            top: -100%;
             left: 0;
             width: 100%;
-            height: 50%;
-            background: var(--gold);
+            height: 100%;
+            background: var(--white);
             animation: scrollDown 2s infinite;
         }
         
         @keyframes scrollDown {
-            to {
-                transform: translateY(40px);
-            }
+            to { top: 100%; }
         }
         
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+        /* Founder Section - Cinematic */
+        .founder-section {
+            padding: 8rem 4rem;
+            background: linear-gradient(135deg, var(--midnight) 0%, rgba(26, 26, 26, 0.95) 50%, var(--pure-black) 100%);
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Story Section */
-        .story-section {
-            padding: 140px 40px;
+        .founder-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 30% 70%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+            z-index: 1;
+        }
+        
+        .founder-container {
             max-width: 1400px;
             margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .story-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 100px;
+            gap: 6rem;
             align-items: center;
         }
         
-        .story-content {
-            opacity: 0;
-        }
-        
-        .section-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
-        
-        .story-title {
-            font-family: var(--font-display);
-            font-size: clamp(32px, 5vw, 48px);
-            font-weight: 600;
-            line-height: 1.3;
-            margin-bottom: 32px;
-            color: var(--charcoal);
-            letter-spacing: -0.3px;
+        .founder-video {
             position: relative;
-        }
-        
-        .story-title::before {
-            content: '';
-            position: absolute;
-            left: -24px;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--luxury-gradient);
-            border-radius: 4px;
-        }
-        
-        .story-text {
-            font-size: 18px;
-            line-height: 1.8;
-            color: var(--gray);
-            margin-bottom: 32px;
-            font-weight: 400;
-            letter-spacing: 0.1px;
-        }
-        
-        .story-text:first-of-type {
-            font-size: 20px;
-            color: var(--charcoal);
-            opacity: 0.9;
-        }
-        
-        .story-visual {
-            position: relative;
-            opacity: 0;
-        }
-        
-        .story-image {
-            width: 100%;
-            height: 600px;
-            background: linear-gradient(135deg, var(--blush), var(--sage));
-            border-radius: 24px;
-            position: relative;
+            background: var(--pure-black);
+            aspect-ratio: 16/9;
             overflow: hidden;
-            box-shadow: var(--shadow-deep);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .story-image::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, 
-                rgba(255, 255, 255, 0.1) 0%, 
-                transparent 50%, 
-                rgba(212, 175, 55, 0.1) 100%);
             opacity: 0;
-            transition: opacity 0.6s ease;
+            transform: translateX(-50px);
         }
         
-        .story-image:hover::before {
-            opacity: 1;
-        }
-        
-        .perfume-showcase {
+        .video-overlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-        }
-        
-        .perfume-tin-mini {
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(145deg, #f9f9f9, #e0e0e0);
-            border-radius: 50%;
-            box-shadow: 
-                0 30px 80px rgba(0,0,0,0.15),
-                inset 0 2px 4px rgba(255,255,255,0.9),
-                inset 0 -2px 4px rgba(0,0,0,0.1);
+            background: rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            animation: float 6s ease-in-out infinite;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
         }
         
-        .perfume-tin-mini::after {
-            content: '';
-            position: absolute;
-            inset: -20px;
-            background: conic-gradient(from 0deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+        .play-button {
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--gold);
             border-radius: 50%;
-            animation: rotate 8s linear infinite;
-            z-index: -1;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .perfume-tin-mini::before {
-            content: 'SUGRE';
-            font-family: var(--font-display);
-            font-size: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             color: var(--gold);
-            letter-spacing: 6px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
         }
         
-        /* Products Section */
-        .products-section {
-            padding: 140px 40px;
-            background: linear-gradient(180deg, var(--white) 0%, var(--pearl) 100%);
-            position: relative;
-            z-index: 2;
+        .play-button:hover {
+            transform: scale(1.1);
+            background: var(--gold);
+            color: var(--pure-black);
         }
         
-        .section-header {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto 100px;
-            padding: 0 20px;
+        .founder-content {
+            opacity: 0;
+            transform: translateX(50px);
         }
         
-        .section-title {
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .founder-title {
             font-family: var(--font-display);
-            font-size: clamp(36px, 6vw, 56px);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 24px;
-            color: var(--charcoal);
-            position: relative;
-            letter-spacing: -0.5px;
+            font-size: 4.5rem;
+            line-height: 0.95;
+            color: var(--white);
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.02em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
         
-        .section-title::after {
+        .founder-story {
+            font-family: var(--font-serif);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--light-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .founder-signature {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--gold);
+            margin-top: 2rem;
+        }
+        
+        /* Collection - Midnight Gallery */
+        .collection-section {
+            padding: 8rem 0;
+            background: linear-gradient(180deg, var(--pure-black) 0%, var(--midnight) 30%, var(--pure-black) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .collection-section::before {
             content: '';
             position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--luxury-gradient);
-            border-radius: 3px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.02) 0%, transparent 40%);
+            z-index: 1;
         }
         
-        .section-subtitle {
-            font-size: 20px;
-            line-height: 1.6;
-            color: var(--gray);
-            font-weight: 400;
-            max-width: 600px;
-            margin: 0 auto;
-            letter-spacing: 0.2px;
+        .collection-header {
+            text-align: center;
+            margin-bottom: 6rem;
         }
         
-        .products-grid {
+        .collection-title {
+            font-family: var(--font-display);
+            font-size: 5.5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.12em;
+            line-height: 0.9;
+            text-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(135deg, var(--white) 0%, var(--champagne-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .collection-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--gold);
+        }
+        
+        /* Product Showcase - Cinematic Cards */
+        .products-showcase {
+            position: relative;
+            padding: 0 4rem;
+        }
+        
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 50px;
-            max-width: 1300px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
         }
         
         .product-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            transform: translateY(30px);
-            cursor: pointer;
             position: relative;
+            background: var(--midnight);
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(50px);
         }
         
         .product-card::before {
@@ -857,10 +731,10 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 1px;
-            background: var(--luxury-gradient);
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(212, 175, 55, 0.1));
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.6s ease;
         }
         
         .product-card:hover::before {
@@ -868,969 +742,526 @@
         }
         
         .product-card:hover {
-            transform: translateY(-16px) scale(1.02);
-            box-shadow: var(--shadow-deep);
-            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 40px 80px rgba(212, 175, 55, 0.3), 0 15px 30px rgba(212, 175, 55, 0.15);
         }
         
         .product-image {
-            height: 300px;
-            background: linear-gradient(135deg, var(--blush), var(--sage));
             position: relative;
+            height: 400px;
+            background: linear-gradient(180deg, var(--midnight) 0%, var(--pure-black) 100%);
             overflow: hidden;
         }
         
-        .coming-soon-overlay {
+        .product-number {
             position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(3px);
+            top: 2rem;
+            left: 2rem;
+            font-family: var(--font-display);
+            font-size: 6rem;
+            color: var(--gold);
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .product-bottle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--gold), var(--champagne-gold));
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 18px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--pure-black);
+            letter-spacing: 0.2em;
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
         }
         
-        .product-card:hover .coming-soon-overlay {
-            opacity: 1;
+        .product-card:hover .product-bottle {
+            transform: translate(-50%, -50%) scale(1.15) rotate(8deg);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4), 0 0 40px rgba(212, 175, 55, 0.3);
+            filter: brightness(1.1);
         }
         
         .product-info {
-            padding: 40px 36px;
+            padding: 3rem 2rem;
+            text-align: center;
         }
         
         .product-name {
             font-family: var(--font-display);
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--charcoal);
-            letter-spacing: -0.2px;
-            transition: color 0.3s ease;
-        }
-        
-        .product-card:hover .product-name {
-            color: var(--gold);
-        }
-        
-        .product-description {
-            color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 24px;
-            font-size: 16px;
-            font-weight: 400;
-            letter-spacing: 0.1px;
+            font-size: 2.2rem;
+            letter-spacing: 0.12em;
+            color: var(--white);
+            margin-bottom: 1.2rem;
+            line-height: 1.1;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
         }
         
         .product-notes {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        
-        .note-tag {
-            padding: 8px 16px;
-            background: linear-gradient(135deg, var(--sage), rgba(232, 237, 231, 0.7));
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gray);
-            transition: all 0.3s ease;
-        }
-        
-        .note-tag:hover {
-            transform: translateY(-1px);
-            background: linear-gradient(135deg, var(--gold-light), var(--gold));
-            color: white;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-        }
-        
-        .notify-btn {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
             color: var(--gold);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-description {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--light-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .product-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.7rem;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .product-cta:hover {
+            background: var(--gold);
+            color: var(--pure-black);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            border-color: var(--champagne-gold);
+        }
+        
+        /* Experience Section */
+        .experience-section {
+            padding: 8rem 4rem;
+            background: linear-gradient(135deg, var(--pure-black) 0%, var(--midnight) 40%, rgba(15, 15, 15, 0.98) 70%, var(--midnight) 100%);
             position: relative;
             overflow: hidden;
         }
         
-        .notify-btn::before {
+        .experience-section::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--luxury-gradient);
-            transition: width 0.4s ease;
-        }
-        
-        .notify-btn:hover::before {
-            width: 100%;
-        }
-        
-        .notify-btn:hover {
-            gap: 12px;
-            transform: translateX(4px);
-            color: var(--deep-gold);
-        }
-        
-        /* Product Modal */
-        .product-modal {
-            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .product-modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            max-width: 900px;
-            width: 100%;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-            position: relative;
-            animation: modalSlideIn 0.5s ease;
-            box-shadow: var(--shadow-deep);
-        }
-        
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            background: radial-gradient(ellipse at 70% 30%, rgba(212, 175, 55, 0.04) 0%, transparent 60%);
             z-index: 1;
-            transition: all 0.3s ease;
         }
         
-        .modal-close:hover {
-            background: var(--gold);
-            color: white;
-            transform: rotate(90deg);
-        }
-        
-        .modal-body {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 500px;
-        }
-        
-        .modal-image {
-            background: linear-gradient(135deg, var(--blush), var(--sage));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .modal-image-perfume {
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(145deg, #f9f9f9, #e0e0e0);
-            border-radius: 50%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-size: 36px;
-            color: var(--gold);
-            letter-spacing: 6px;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .modal-info {
-            padding: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .modal-title {
-            font-family: var(--font-display);
-            font-size: 42px;
-            margin-bottom: 20px;
-            color: var(--charcoal);
-        }
-        
-        .modal-description {
-            font-size: 18px;
-            line-height: 1.8;
-            color: var(--gray);
-            margin-bottom: 30px;
-        }
-        
-        .modal-notes {
-            margin-bottom: 30px;
-        }
-        
-        .modal-notes h4 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gold);
-            margin-bottom: 15px;
-        }
-        
-        .notes-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .note-item {
-            padding: 8px 20px;
-            background: var(--pearl);
-            border-radius: 20px;
-            font-size: 14px;
-            color: var(--gray);
-        }
-        
-        .modal-cta {
-            display: flex;
-            gap: 20px;
-        }
-        
-        /* Education Section */
-        .education-section {
-            padding: 140px 40px;
-            max-width: 1300px;
+        .experience-container {
+            max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .education-tabs {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 60px;
-            border-bottom: 1px solid var(--sage);
-            overflow-x: auto;
-        }
-        
-        .tab {
-            padding: 15px 0;
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            white-space: nowrap;
-            transition: color 0.3s ease;
-        }
-        
-        .tab.active {
-            color: var(--charcoal);
-        }
-        
-        .tab::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
-        
-        .tab.active::after {
-            width: 100%;
-        }
-        
-        .tab-content {
-            display: none;
-            animation: fadeInUp 0.5s ease;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .education-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-        
-        .education-text h3 {
-            font-family: var(--font-display);
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: var(--charcoal);
-        }
-        
-        .education-text p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-        
-        .education-visual {
-            background: linear-gradient(135deg, 
-                rgba(232, 237, 231, 0.8), 
-                rgba(255, 228, 204, 0.6));
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 40px;
             text-align: center;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-soft);
-            position: relative;
-            overflow: hidden;
         }
         
-        .education-visual::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.03), transparent);
-            animation: shimmer 6s ease-in-out infinite;
+        .experience-title {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 3rem;
         }
         
-        @keyframes shimmer {
-            0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-top: 5rem;
         }
         
-        .icon-large {
-            font-size: 120px;
+        .experience-item {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .experience-icon {
+            font-size: 3rem;
             color: var(--gold);
-            opacity: 0.5;
+            margin-bottom: 1.5rem;
         }
         
-        /* Contact Section */
-        .contact-section {
-            padding: 140px 40px;
-            background: linear-gradient(180deg, var(--pearl), rgba(250, 250, 248, 0.7));
+        .experience-label {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .experience-text {
+            font-size: 0.9rem;
+            color: var(--light-gray);
+            line-height: 1.6;
+        }
+        
+        /* VIP Section */
+        .vip-section {
+            padding: 8rem 4rem;
+            background: linear-gradient(135deg, var(--midnight) 0%, rgba(20, 20, 20, 0.95) 50%, var(--pure-black) 100%);
             position: relative;
-            z-index: 2;
             overflow: hidden;
         }
         
-        .contact-section::before {
+        .vip-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
-            z-index: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            z-index: 1;
         }
         
-        .contact-container {
+        .vip-container {
             max-width: 900px;
             margin: 0 auto;
             text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .contact-intro {
-            font-size: 18px;
-            color: var(--gray);
-            margin-bottom: 60px;
-            line-height: 1.8;
-        }
-        
-        .contact-form {
-            display: grid;
-            gap: 40px;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            padding: 60px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow-soft);
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        
-        .form-group {
+            padding: 5rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+            border: 1px solid var(--gold);
             position: relative;
         }
         
-        .form-input,
-        .form-textarea {
-            width: 100%;
-            padding: 20px 24px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            font-size: 16px;
-            font-family: var(--font-body);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--charcoal);
-        }
-        
-        .form-input:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--gold);
-            background: rgba(255, 255, 255, 0.8);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
-        }
-        
-        .form-input::placeholder,
-        .form-textarea::placeholder {
-            color: rgba(107, 107, 107, 0.6);
-        }
-        
-        .form-label {
+        .vip-container::before {
+            content: 'EXCLUSIVE';
             position: absolute;
-            left: 24px;
-            top: 22px;
-            color: var(--gray);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 0 8px;
-            border-radius: 4px;
-        }
-        
-        .form-input:focus + .form-label,
-        .form-input:not(:placeholder-shown) + .form-label,
-        .form-textarea:focus + .form-label,
-        .form-textarea:not(:placeholder-shown) + .form-label {
-            top: -8px;
-            font-size: 12px;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem 2rem;
+            background: var(--midnight);
             color: var(--gold);
-            font-weight: 500;
-            letter-spacing: 0.5px;
+            font-size: 0.7rem;
+            letter-spacing: 0.3rem;
         }
         
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
+        .vip-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 2rem;
         }
         
-        .form-submit {
-            margin-top: 30px;
+        .vip-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            font-style: italic;
         }
         
-        /* Newsletter Section */
-        .newsletter-section {
-            padding: 80px 40px;
-            background: linear-gradient(135deg, var(--charcoal) 0%, #1a1a1a 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
+        .vip-benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
         }
         
-        .newsletter-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            z-index: 0;
+        .vip-benefit {
+            padding: 2rem;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
         
-        .newsletter-container {
-            position: relative;
-            z-index: 1;
+        .vip-benefit-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
         }
         
-        .newsletter-container {
+        .vip-benefit-text {
+            font-size: 0.9rem;
+            color: var(--light-gray);
+        }
+        
+        .vip-form {
+            display: flex;
+            gap: 1rem;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 3rem auto 0;
         }
         
-        .newsletter-title {
-            font-family: var(--font-display);
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .newsletter-text {
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-        
-        .newsletter-form {
-            display: flex;
-            gap: 20px;
-            max-width: 500px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 12px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .newsletter-input {
+        .vip-input {
             flex: 1;
-            padding: 16px 24px;
-            border: none;
-            border-radius: 40px;
+            padding: 1rem 1.5rem;
             background: transparent;
-            color: white;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            border: 1px solid var(--gold);
+            color: var(--white);
+            font-size: 0.9rem;
         }
         
-        .newsletter-input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.1);
+        .vip-input::placeholder {
+            color: var(--gray);
         }
         
-        .newsletter-input::placeholder {
-            color: rgba(255,255,255,0.5);
-        }
-        
-        .newsletter-submit {
-            padding: 16px 32px;
-            background: var(--luxury-gradient);
-            color: white;
+        .vip-submit {
+            padding: 1rem 3rem;
+            background: var(--gold);
+            color: var(--pure-black);
             border: none;
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 14px;
             font-weight: 600;
+            letter-spacing: 0.1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
         }
         
-        .newsletter-submit:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-            filter: brightness(1.1);
+        .vip-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
         }
         
-        .newsletter-submit:hover {
-            background: var(--deep-gold);
-        }
-        
-        /* Footer */
+        /* Footer - Minimal Luxe */
         footer {
-            padding: 80px 40px 40px;
-            background: linear-gradient(135deg, var(--charcoal) 0%, #1a1a1a 100%);
-            color: white;
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--luxury-gradient);
-            z-index: 1;
+            padding: 4rem;
+            background: var(--pure-black);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
         }
         
         .footer-content {
             max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 80px;
-            margin-bottom: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .footer-brand .footer-logo {
+        .footer-logo {
             font-family: var(--font-display);
-            font-size: 36px;
+            font-size: 2rem;
             color: var(--gold);
-            margin-bottom: 20px;
-            letter-spacing: 4px;
-        }
-        
-        .footer-brand p {
-            opacity: 0.8;
-            line-height: 1.6;
-        }
-        
-        .footer-column h4 {
-            margin-bottom: 20px;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gold);
+            letter-spacing: 0.5rem;
         }
         
         .footer-links {
+            display: flex;
+            gap: 3rem;
             list-style: none;
         }
         
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
         .footer-links a {
-            color: white;
+            color: var(--light-gray);
             text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
         }
         
         .footer-links a:hover {
-            opacity: 1;
+            color: var(--gold);
         }
         
-        .footer-bottom {
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            opacity: 0.6;
-            font-size: 14px;
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: var(--gray);
+            letter-spacing: 0.1rem;
         }
         
-        /* Toast Notification */
-        .toast {
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: none;
+            z-index: 1001;
+        }
+        
+        .menu-toggle span {
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+        
+        /* Mobile Menu Overlay */
+        .mobile-menu {
             position: fixed;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            padding: 24px 48px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow-deep);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            z-index: 3000;
-            transition: bottom 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        
-        .toast::before {
-            content: '';
-            position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--luxury-gradient);
-            border-radius: 50px 50px 0 0;
-        }
-        
-        .toast.show {
-            bottom: 40px;
-        }
-        
-        .toast-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--luxury-gradient);
-            border-radius: 50%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-        }
-        
-        .toast-message {
-            font-size: 14px;
-            color: var(--charcoal);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .hero-content {
-                padding: 0 20px;
-            }
-            
-            .story-section,
-            .products-section,
-            .education-section,
-            .contact-section {
-                padding: 80px 20px;
-            }
-            
-            .story-grid {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 0;
-            }
-            
-            .education-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .contact-form {
-                padding: 40px 30px;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-            
-            .newsletter-form {
-                flex-direction: column;
-                padding: 8px;
-                gap: 12px;
-            }
-            
-            .newsletter-input,
-            .newsletter-submit {
-                border-radius: 16px;
-            }
-            
-            .modal-body {
-                grid-template-columns: 1fr;
-            }
-            
-            .modal-info {
-                padding: 30px 24px;
-            }
-            
-            .custom-cursor,
-            .cursor-follower {
-                display: none;
-            }
-            
-            .section-header {
-                margin-bottom: 60px;
-            }
-            
-            .product-info {
-                padding: 30px 24px;
-            }
-        }
-        
-        /* Enhanced hover animations */
-        .story-visual:hover .perfume-tin-mini {
-            transform: translateY(-8px) scale(1.05);
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .education-text h3 {
-            transition: color 0.4s ease;
-        }
-        
-        .education-text:hover h3 {
-            background: var(--luxury-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Scroll reveal animations */
-        .reveal-up {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
+            transition: var(--transition);
         }
         
-        .reveal-up.visible {
+        .mobile-menu.active {
             opacity: 1;
-            transform: translateY(0);
+            visibility: visible;
         }
         
-        /* Initial state for animations */
-        .hero-title,
-        .hero-subtitle,
-        .cta-group {
+        .mobile-menu-content {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .mobile-menu-links {
+            list-style: none;
+            margin-bottom: 3rem;
+        }
+        
+        .mobile-menu-links li {
+            margin-bottom: 2rem;
+        }
+        
+        .mobile-menu-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+            display: block;
+            padding: 1rem 0;
+        }
+        
+        .mobile-menu-links a:hover {
+            color: var(--gold);
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        .mobile-menu-cta {
+            padding: 1rem 3rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .mobile-menu-cta:hover {
+            background: var(--gold);
+            color: var(--pure-black);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px) scale(1.02);
+        }
+        
+        /* Menu Toggle Animation */
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
             opacity: 0;
-            transform: translateY(30px);
         }
         
-        /* Fade in animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
         
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .stagger {
-            opacity: 0;
-            transform: translateY(40px) scale(0.95);
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .stagger.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        
-        /* Premium loading states */
-        .loading-shimmer {
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(212, 175, 55, 0.1) 50%, 
-                transparent 100%);
-            background-size: 200% 100%;
-            animation: shimmer 2s infinite;
-        }
-        
-        /* Luxury focus states */
-        .luxury-focus {
-            position: relative;
-        }
-        
-        .luxury-focus:focus {
-            outline: none;
-        }
-        
-        .luxury-focus:focus::before {
-            content: '';
+        /* Floating Particles */
+        .floating-particles {
             position: absolute;
-            inset: -4px;
-            background: var(--luxury-gradient);
-            border-radius: inherit;
-            z-index: -1;
-            filter: blur(8px);
-            opacity: 0.6;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, var(--gold), transparent);
+            border-radius: 50%;
+            animation: float 10s linear infinite;
+            opacity: 0;
+        }
+        
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 12s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 15s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 18s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 14s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 16s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 13s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 2.5s; animation-duration: 17s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 4.5s; animation-duration: 11s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 1.5s; animation-duration: 19s; }
+        
+        @keyframes float {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-10vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20vh) scale(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header { padding: 1.5rem 2rem; }
+            .nav-links, .nav-cta { display: none; }
+            .menu-toggle { display: flex; }
+            .hero-title { font-size: 4rem; }
+            .founder-container { grid-template-columns: 1fr; }
+            .product-grid { grid-template-columns: 1fr; }
+            .experience-grid { grid-template-columns: 1fr 1fr; }
+            .vip-benefits { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; gap: 2rem; }
+            .cursor, .cursor-dot { display: none; }
         }
     </style>
 </head>
 <body>
-    <!-- Custom Cursor (Desktop only) -->
-    <div class="custom-cursor"></div>
-    <div class="cursor-follower"></div>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
     
-    <!-- Animated Background Particles -->
-    <div class="particles" id="particles"></div>
-    
-    <!-- Loading Screen -->
+    <!-- Luxe Loader -->
     <div class="loader" id="loader">
         <div class="loader-content">
-            <div class="loader-logo">SUGRE</div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-content">
-            <nav class="mobile-nav">
-                <ul class="mobile-nav-links">
-                    <li><a href="#home" class="mobile-link">Home</a></li>
-                    <li><a href="#story" class="mobile-link">Our Story</a></li>
-                    <li><a href="#products" class="mobile-link">Collection</a></li>
-                    <li><a href="#education" class="mobile-link">Education</a></li>
-                    <li><a href="#contact" class="mobile-link">Contact</a></li>
-                </ul>
-            </nav>
+            <div class="loader-logo">Sugraé </div>
         </div>
     </div>
     
     <!-- Header -->
     <header id="header">
         <nav>
-            <a href="#" class="logo">SUGRE</a>
+            <a href="#" class="logo">Sugraé </a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#story">Our Story</a></li>
-                <li><a href="#products">Collection</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#founder">Our Story</a></li>
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <!--<li><a href="#vip">VIP Access</a></li> -->
             </ul>
+            <a href="#vip" class="nav-cta">Join VIP</a>
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
@@ -1839,369 +1270,246 @@
         </nav>
     </header>
     
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg">
-            <div class="hero-bg-circle circle-1"></div>
-            <div class="hero-bg-circle circle-2"></div>
-            <div class="hero-bg-circle circle-3"></div>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <ul class="mobile-menu-links">
+                <li><a href="#founder">Our Story</a></li>
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#vip">VIP Access</a></li>
+            </ul>
+            <a href="#vip" class="mobile-menu-cta">Join VIP</a>
         </div>
+    </div>
+    
+    <!-- Hero Section with Story Banner -->
+    <section class="hero" id="home">
+        <div class="hero-video">
+            <div class="video-element" style="background: linear-gradient(135deg, #0A0A0A, #1a1a1a); height: 100%;"></div>
+        </div>
+        <div class="floating-particles" id="particles"></div>
         <div class="hero-content">
-            <h1 class="hero-title">Fragrance, Reimagined <span class="typed-text"></span></h1>
-            <p class="hero-subtitle">Discover solid perfumes crafted for sensitive souls and refined tastes</p>
-            <div class="cta-group">
-                <a href="#products" class="btn btn-primary">Explore Collection</a>
-                <a href="#story" class="btn btn-outline">Our Story</a>
+            <div class="hero-subtitle">Born from a Mother's Love • 2025</div>
+            <h1 class="hero-title">Sugraé </h1>
+            <p class="hero-tagline">Where Love Meets Luxury</p>
+            <div class="hero-cta-group">
+                <a href="#collection" class="btn-luxe btn-luxe-primary">Discover Collection</a>
+                <a href="#founder" class="btn-luxe btn-luxe-outline">Our Story</a>
             </div>
         </div>
         <div class="scroll-indicator">
-            <span class="scroll-text">Scroll</span>
+            <div class="scroll-text">Scroll</div>
             <div class="scroll-line"></div>
         </div>
     </section>
     
-    <!-- Story Section -->
-    <section class="story-section" id="story">
-        <div class="story-grid">
-            <div class="story-content fade-in">
-                <div class="section-label">Our Beginning</div>
-                <h2 class="story-title">Born from a Mother's Need for Gentleness</h2>
-                <p class="story-text">
-                    When our founder couldn't wear traditional perfumes during pregnancy, she and her husband crafted something revolutionary—solid perfumes that honor both sophistication and sensitivity. Each hand-poured creation delivers whisper-soft scents that embrace rather than overwhelm, proving that true luxury lies in thoughtful restraint.
-                </p>
-                <p class="story-text">
-                    Today, Sugre continues this legacy of gentle luxury, creating alcohol-free, travel-friendly solid perfumes that tell your story without overwhelming your senses or those around you.
-                </p>
-                <a href="#products" class="btn btn-primary">Discover Our Collection</a>
+    <!-- Founder Section - The Real Story -->
+    <section class="founder-section" id="founder">
+        <div class="founder-container">
+            <div class="founder-video">
+                <div class="video-overlay">
+                    <div class="play-button">▶</div>
+                </div>
             </div>
-            <div class="story-visual fade-in">
-                <div class="story-image">
-                    <div class="perfume-showcase">
-                        <div class="perfume-tin-mini"></div>
+            <div class="founder-content">
+                <div class="section-label">The Genesis</div>
+                <h2 class="founder-title">BORN FROM<br>PURE LOVE</h2>
+                <p class="founder-story">
+                    She had always been a woman of fragrances—bold, confident, unapologetic. 
+                    Her collection of perfumes was her armor, her signature. Until the day two lines 
+                    appeared on a test, and everything changed.
+                </p>
+                <p class="founder-story">
+                    Suddenly, the scents she loved became her enemy. Even the gentlest fragrance 
+                    would overwhelm her expecting senses. She longed for that feeling again—to wear 
+                    her confidence, to feel complete. She needed something revolutionary: a perfume 
+                    gentle enough for her journey into motherhood, yet luxurious enough for the woman she remained.
+                </p>
+                <p class="founder-story">
+                    Her husband watched her struggle, and in that darkness, inspiration struck. 
+                    Together, they crafted something unprecedented—solid perfumes that whisper instead 
+                    of shout, that embrace without overwhelming. Portable luxury. Gentle power. Long-lasting elegance.
+                </p>
+                <p class="founder-story">
+                    <strong>Sugraé  was born not in a laboratory, but in a moment of love.</strong> 
+                    A husband's promise to his wife. A mother's wish for her child. A revolution in 
+                    luxury fragrance that proves true opulence lies in caring for those we love.
+                </p>
+                <div class="founder-signature">— Founders, House of Sugraé </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Collection -->
+    <section class="collection-section" id="collection">
+        <div class="collection-header">
+            <h2 class="collection-title">THE COLLECTION</h2>
+            <p class="collection-subtitle">Three Chapters of Midnight</p>
+        </div>
+        <div class="products-showcase">
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-number">01</div>
+                        <div class="product-bottle">Sugraé </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">ALPHA</h3>
+                        <p class="product-notes">Bergamot • White Tea • Soft Musk</p>
+                        <p class="product-description">
+                            Inspired by morning's first light touching a newborn's cheek. A gentle awakening 
+                            that celebrates new beginnings with the softest touch.
+                        </p>
+                        <a href="#" class="product-cta">Reserve Now</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-number">02</div>
+                        <div class="product-bottle">Sugraé </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">First Love</h3>
+                        <p class="product-notes">Honey • Vanilla • Sandalwood</p>
+                        <p class="product-description">
+                            The warmth of an embrace, the strength of love. Created for the woman who 
+                            carries life while maintaining her golden radiance.
+                        </p>
+                        <a href="#" class="product-cta">Reserve Now</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-number">03</div>
+                        <div class="product-bottle">Sugraé </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">AURA</h3>
+                        <p class="product-notes">Rose Petals • Peach • White Cedar</p>
+                        <p class="product-description">
+                            Proof that gentleness is the ultimate luxury. A sophisticated whisper that 
+                            speaks volumes without overwhelming.
+                        </p>
+                        <a href="#" class="product-cta">Reserve Now</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Products Section -->
-    <section class="products-section" id="products">
-        <div class="section-header fade-in">
-            <h2 class="section-title">Our Collection</h2>
-            <p class="section-subtitle">Three signature scents, each telling its own gentle story</p>
-        </div>
-        <div class="products-grid">
-            <div class="product-card stagger" onclick="openModal('Dawn Garden')">
-                <div class="product-image">
-                    <div class="coming-soon-overlay">Coming Soon</div>
+    <!-- Experience -->
+    <section class="experience-section" id="experience">
+        <div class="experience-container">
+            <h2 class="experience-title">THE Sugraé  PROMISE</h2>
+            <p class="experience-subtitle" style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--gold); margin-bottom: 3rem; font-style: italic;">
+                Luxury redefined for life's most precious moments
+            </p>
+            <div class="experience-grid">
+                <div class="experience-item">
+                    <div class="experience-icon">🤰</div>
+                    <div class="experience-label">GENTLE</div>
+                    <p class="experience-text">Safe for pregnancy & sensitive skin</p>
                 </div>
-                <div class="product-info">
-                    <h3 class="product-name">Dawn Garden</h3>
-                    <p class="product-description">A fresh, dewy fragrance that captures the first light of morning</p>
-                    <div class="product-notes">
-                        <span class="note-tag">Citrus</span>
-                        <span class="note-tag">White Tea</span>
-                        <span class="note-tag">Jasmine</span>
-                    </div>
-                    <a href="#" class="notify-btn" onclick="event.stopPropagation(); notifyMe(); return false;">Notify Me →</a>
+                <div class="experience-item">
+                    <div class="experience-icon">👶</div>
+                    <div class="experience-label">BABY-SAFE</div>
+                    <p class="experience-text">Mild enough for mothers & newborns</p>
                 </div>
-            </div>
-            <div class="product-card stagger" onclick="openModal('Velvet Woods')">
-                <div class="product-image">
-                    <div class="coming-soon-overlay">Coming Soon</div>
+                <div class="experience-item">
+                    <div class="experience-icon">💎</div>
+                    <div class="experience-label">LUXURIOUS</div>
+                    <p class="experience-text">Premium ingredients, zero compromise</p>
                 </div>
-                <div class="product-info">
-                    <h3 class="product-name">Velvet Woods</h3>
-                    <p class="product-description">Warm embrace of sandalwood and amber, grounding and serene</p>
-                    <div class="product-notes">
-                        <span class="note-tag">Sandalwood</span>
-                        <span class="note-tag">Amber</span>
-                        <span class="note-tag">Vanilla</span>
-                    </div>
-                    <a href="#" class="notify-btn" onclick="event.stopPropagation(); notifyMe(); return false;">Notify Me →</a>
+                <div class="experience-item">
+                    <div class="experience-icon">⏰</div>
+                    <div class="experience-label">LONG-LASTING</div>
+                    <p class="experience-text">12+ hours of gentle elegance</p>
                 </div>
             </div>
-            <div class="product-card stagger" onclick="openModal('Rose Whisper')">
-                <div class="product-image">
-                    <div class="coming-soon-overlay">Coming Soon</div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Rose Whisper</h3>
-                    <p class="product-description">Delicate petals and soft musk create an intimate, romantic aura</p>
-                    <div class="product-notes">
-                        <span class="note-tag">Rose</span>
-                        <span class="note-tag">White Musk</span>
-                        <span class="note-tag">Peony</span>
-                    </div>
-                    <a href="#" class="notify-btn" onclick="event.stopPropagation(); notifyMe(); return false;">Notify Me →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Product Modal -->
-    <div class="product-modal" id="productModal">
-        <div class="modal-content">
-            <div class="modal-close" onclick="closeModal()">✕</div>
-            <div class="modal-body">
-                <div class="modal-image">
-                    <div class="modal-image-perfume">SUGRE</div>
-                </div>
-                <div class="modal-info">
-                    <h3 class="modal-title" id="modalTitle">Dawn Garden</h3>
-                    <p class="modal-description" id="modalDescription">
-                        A fresh, dewy fragrance that captures the first light of morning.
-                    </p>
-                    <div class="modal-notes">
-                        <h4>Scent Profile</h4>
-                        <div class="notes-list" id="modalNotes">
-                            <span class="note-item">Top: Bergamot</span>
-                        </div>
-                    </div>
-                    <div class="modal-cta">
-                        <button class="btn btn-primary" onclick="notifyMe()">Notify Me</button>
-                        <button class="btn btn-outline" onclick="closeModal()">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Education Section -->
-    <section class="education-section" id="education">
-        <div class="section-header fade-in">
-            <h2 class="section-title">The Art of Solid Perfume</h2>
-            <p class="section-subtitle">Master the gentle application of your signature scent</p>
-        </div>
-        
-        <div class="education-tabs">
-            <a href="#" class="tab active" data-tab="application">Application</a>
-            <a href="#" class="tab" data-tab="layering">Layering</a>
-            <a href="#" class="tab" data-tab="ingredients">Ingredients</a>
-            <a href="#" class="tab" data-tab="care">Care & Storage</a>
-        </div>
-        
-        <div class="tab-content active" id="application">
-            <div class="education-grid">
-                <div class="education-text fade-in">
-                    <h3>The Perfect Application</h3>
-                    <p>Warm the solid perfume between your fingertips for a few seconds. This gentle heat activates the natural waxes and releases the fragrance.</p>
-                    <p>Apply to pulse points: wrists, behind ears, collarbones, and inner elbows. These warm areas help diffuse the scent naturally throughout the day.</p>
-                    <p>Less is more with solid perfume. Start with a small amount and build as desired. The beauty lies in its subtlety.</p>
-                </div>
-                <div class="education-visual fade-in">
-                    <div class="icon-large">✨</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="tab-content" id="layering">
-            <div class="education-grid">
-                <div class="education-text">
-                    <h3>Create Your Signature</h3>
-                    <p>Solid perfumes are perfect for layering. Start with lighter, fresher scents and build towards deeper, warmer notes.</p>
-                    <p>Apply different scents to different pulse points to create a unique fragrance journey that evolves throughout your day.</p>
-                    <p>Our collection is designed to complement each other beautifully, allowing endless personalization.</p>
-                </div>
-                <div class="education-visual">
-                    <div class="icon-large">🌸</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="tab-content" id="ingredients">
-            <div class="education-grid">
-                <div class="education-text">
-                    <h3>Pure & Gentle</h3>
-                    <p>Our formula begins with natural waxes including beeswax and shea butter, creating a nourishing base that's kind to your skin.</p>
-                    <p>Essential oils and premium fragrance compounds are carefully balanced to deliver sophisticated scents without overwhelming.</p>
-                    <p>Free from alcohol, parabens, and harsh chemicals. Every ingredient is chosen for both its aromatic beauty and skin-loving properties.</p>
-                </div>
-                <div class="education-visual">
-                    <div class="icon-large">🌿</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="tab-content" id="care">
-            <div class="education-grid">
-                <div class="education-text">
-                    <h3>Preserve Your Perfume</h3>
-                    <p>Store your solid perfume in a cool, dry place away from direct sunlight. Heat can soften the balm and affect the fragrance.</p>
-                    <p>Keep the tin closed when not in use to preserve the scent's integrity and prevent contamination.</p>
-                    <p>With proper care, your solid perfume will maintain its quality for 12-18 months, though we suspect you'll use it long before then.</p>
-                </div>
-                <div class="education-visual">
-                    <div class="icon-large">💎</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section class="contact-section" id="contact">
-        <div class="contact-container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Let's Connect</h2>
-                <p class="contact-intro">
-                    We'd love to hear from you. Whether you have questions about our gentle formulations or simply want to share your story, we're here.
+            <div style="max-width: 800px; margin: 4rem auto 0; text-align: center;">
+                <p style="font-size: 1.125rem; line-height: 1.8; color: var(--light-gray); font-family: var(--font-serif);">
+                    "Every Sugraé  perfume is a testament to the belief that motherhood doesn't mean 
+                    sacrificing elegance. It means redefining it."
                 </p>
             </div>
-            
-            <form class="contact-form fade-in">
-                <div class="form-row">
-                    <div class="form-group">
-                        <input type="text" class="form-input luxury-focus" placeholder=" " required>
-                        <label class="form-label">Your Name</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-input luxury-focus" placeholder=" " required>
-                        <label class="form-label">Your Email</label>
-                    </div>
+        </div>
+    </section>
+    
+    <!-- VIP Section -->
+   <!-- <section class="vip-section" id="vip">
+        <div class="vip-container">
+            <h2 class="vip-title">THE MOTHER'S CIRCLE</h2>
+            <p class="vip-subtitle">Where Luxury Meets Motherhood</p>
+            <div class="vip-benefits">
+                <div class="vip-benefit">
+                    <div class="vip-benefit-title">PRENATAL CONSULTATION</div>
+                    <p class="vip-benefit-text">Personal fragrance guidance for expecting mothers</p>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-input luxury-focus" placeholder=" ">
-                    <label class="form-label">Subject</label>
+                <div class="vip-benefit">
+                    <div class="vip-benefit-title">CUSTOM BLENDING</div>
+                    <p class="vip-benefit-text">Create your signature scent, gentle enough for your journey</p>
                 </div>
-                <div class="form-group">
-                    <textarea class="form-textarea luxury-focus" placeholder=" " required></textarea>
-                    <label class="form-label">Your Message</label>
+                <div class="vip-benefit">
+                    <div class="vip-benefit-title">FAMILY COLLECTION</div>
+                    <p class="vip-benefit-text">Exclusive sets designed for mothers and babies</p>
                 </div>
-                <div class="form-submit">
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </div>
+            </div>
+            <p style="text-align: center; margin: 2rem 0; font-size: 1rem; color: var(--light-gray); line-height: 1.8;">
+                Join an exclusive community of mothers who refuse to compromise on luxury. 
+                Because becoming a mother doesn't mean becoming invisible—it means becoming invincible.
+            </p>
+            <form class="vip-form">
+                <input type="email" class="vip-input" placeholder="Enter your email" required>
+                <button type="submit" class="vip-submit">Join Now</button>
             </form>
         </div>
-    </section>
-    
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <div class="newsletter-container fade-in">
-            <h3 class="newsletter-title">Stay in Touch</h3>
-            <p class="newsletter-text">Be the first to know about our launch and receive exclusive early access</p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input luxury-focus" placeholder="Enter your email" required>
-                <button type="submit" class="newsletter-submit">Subscribe</button>
-            </form>
-        </div>
-    </section>
+    </section> -->
     
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">SUGRE</div>
-                <p>Gentle luxury solid perfumes crafted for sensitive souls. Born from a mother's need for beauty without compromise.</p>
-            </div>
-            <div class="footer-column">
-                <h4>Explore</h4>
-                <ul class="footer-links">
-                    <li><a href="#products">Collection</a></li>
-                    <li><a href="#story">Our Story</a></li>
-                    <li><a href="#education">How to Use</a></li>
-                    <li><a href="#">Gift Sets</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Support</h4>
-                <ul class="footer-links">
-                    <li><a href="#contact">Contact Us</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Shipping</a></li>
-                    <li><a href="#">Returns</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Connect</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Pinterest</a></li>
-                    <li><a href="#">Newsletter</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Sugre. All rights reserved. | Crafted with love for gentle souls</p>
+            <div class="footer-logo">Sugraé </div>
+            <ul class="footer-links">
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Instagram</a></li>
+            </ul>
+            <div class="footer-copyright">© 2025 Sugraé .</div>
         </div>
     </footer>
     
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">
-        <div class="toast-icon">✓</div>
-        <div class="toast-message" id="toastMessage">Success! You're on the list.</div>
-    </div>
-    
     <script>
-        // Wait for all scripts to load
-        let gsapLoaded = false;
-        let typedLoaded = false;
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursorDot');
         
-        // Check if libraries are loaded
-        function checkLibraries() {
-            if (typeof gsap !== 'undefined') gsapLoaded = true;
-            if (typeof Typed !== 'undefined') typedLoaded = true;
-            
-            if (gsapLoaded && typedLoaded) {
-                return true;
-            }
-            return false;
-        }
-        
-        // Loader
-        window.addEventListener('load', () => {
-            // Check if libraries are loaded, if not wait
-            let checkInterval = setInterval(() => {
-                if (checkLibraries()) {
-                    clearInterval(checkInterval);
-                    setTimeout(() => {
-                        document.getElementById('loader').classList.add('hidden');
-                        initAnimations();
-                    }, 2000);
-                }
-            }, 100);
-        });
-        
-        // Generate floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 20;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (20 + Math.random() * 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-        createParticles();
-        
-        // Enhanced cursor effect (desktop only)
         if (window.innerWidth > 768) {
-            const cursor = document.querySelector('.custom-cursor');
-            const follower = document.querySelector('.cursor-follower');
-            
             document.addEventListener('mousemove', (e) => {
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
-                
-                setTimeout(() => {
-                    follower.style.left = e.clientX + 'px';
-                    follower.style.top = e.clientY + 'px';
-                }, 100);
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
             });
             
-            // Add hover effect to interactive elements
-            const interactiveElements = document.querySelectorAll('a, button, .product-card');
-            interactiveElements.forEach(el => {
+            document.querySelectorAll('a, button').forEach(el => {
                 el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
                 el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
             });
         }
         
-        // Header scroll effect
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                initAnimations();
+            }, 2500);
+        });
+        
+        // Header Scroll
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             if (window.scrollY > 100) {
@@ -2211,26 +1519,173 @@
             }
         });
         
-        // Mobile menu
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+        // Initialize Animations
+        function initAnimations() {
+            createParticles();
+            
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+                // Fallback
+                document.querySelectorAll('.hero-subtitle, .hero-title, .hero-tagline, .hero-cta-group').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+                return;
+            }
+            
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Hero Animations
+            const heroTl = gsap.timeline({ delay: 0.5 });
+            
+            heroTl
+                .to('.hero-subtitle', {
+                    duration: 1,
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power3.out'
+                })
+                .to('.hero-title', {
+                    duration: 1.5,
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power4.out'
+                }, '-=0.5')
+                .to('.hero-tagline', {
+                    duration: 1,
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power3.out'
+                }, '-=0.8')
+                .to('.hero-cta-group', {
+                    duration: 1,
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power3.out'
+                }, '-=0.6');
+            
+            // Parallax for hero
+            gsap.to('.hero-video', {
+                scrollTrigger: {
+                    trigger: '.hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 1
+                },
+                y: 100,
+                ease: 'none'
+            });
+            
+            // Founder Section
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.founder-section',
+                    start: 'top 70%'
+                }
+            })
+            .to('.founder-video', {
+                duration: 1,
+                opacity: 1,
+                x: 0,
+                ease: 'power3.out'
+            })
+            .to('.founder-content', {
+                duration: 1,
+                opacity: 1,
+                x: 0,
+                ease: 'power3.out'
+            }, '-=0.5');
+            
+            // Product Cards
+            gsap.utils.toArray('.product-card').forEach((card, i) => {
+                gsap.to(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%'
+                    },
+                    duration: 1,
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power3.out',
+                    delay: i * 0.2
+                });
+            });
+            
+            // Experience Items
+            gsap.utils.toArray('.experience-item').forEach((item, i) => {
+                gsap.to(item, {
+                    scrollTrigger: {
+                        trigger: '.experience-grid',
+                        start: 'top 70%'
+                    },
+                    duration: 0.8,
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power3.out',
+                    delay: i * 0.1
+                });
+            });
+            
+            // Text animations
+            gsap.utils.toArray('.collection-title, .experience-title, .vip-title').forEach(title => {
+                gsap.from(title, {
+                    scrollTrigger: {
+                        trigger: title,
+                        start: 'top 80%'
+                    },
+                    duration: 1,
+                    y: 50,
+                    opacity: 0,
+                    ease: 'power3.out'
+                });
+            });
+        }
         
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 12; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Form submission
+        document.querySelector('.vip-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Welcome to the Midnight Circle. Check your email for exclusive access.');
+            e.target.reset();
         });
         
-        mobileLinks.forEach(link => {
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
                 mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
+                menuToggle.classList.remove('active');
             });
         });
         
-        // Smooth scrolling for navigation links
+        // Close mobile menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+        
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -2243,276 +1698,6 @@
                 }
             });
         });
-        
-        // Initialize animations
-        function initAnimations() {
-            // Check if GSAP is available
-            if (typeof gsap === 'undefined') {
-                console.error('GSAP not loaded');
-                return;
-            }
-            
-            // Hero animations with GSAP
-            gsap.set('.hero-title', { opacity: 0, y: 30 });
-            gsap.set('.hero-subtitle', { opacity: 0, y: 30 });
-            gsap.set('.cta-group', { opacity: 0, y: 30 });
-            
-            gsap.to('.hero-title', {
-                duration: 1,
-                y: 0,
-                opacity: 1,
-                ease: 'power3.out'
-            });
-            
-            gsap.to('.hero-subtitle', {
-                duration: 1,
-                y: 0,
-                opacity: 1,
-                delay: 0.3,
-                ease: 'power3.out'
-            });
-            
-            gsap.to('.cta-group', {
-                duration: 1,
-                y: 0,
-                opacity: 1,
-                delay: 0.6,
-                ease: 'power3.out'
-            });
-            
-            // Typed.js for hero text
-            if (typeof Typed !== 'undefined') {
-                new Typed('.typed-text', {
-                    strings: ['Gently', 'Thoughtfully', 'Beautifully'],
-                    typeSpeed: 100,
-                    backSpeed: 50,
-                    backDelay: 2000,
-                    loop: true
-                });
-            }
-            
-            // Register ScrollTrigger plugin
-            if (gsap.registerPlugin && typeof ScrollTrigger !== 'undefined') {
-                gsap.registerPlugin(ScrollTrigger);
-                
-                // Fade in elements
-                gsap.utils.toArray('.fade-in').forEach(element => {
-                    gsap.set(element, { opacity: 0, y: 30 });
-                    
-                    gsap.to(element, {
-                        scrollTrigger: {
-                            trigger: element,
-                            start: 'top 80%',
-                            end: 'bottom 20%',
-                            toggleActions: 'play none none none'
-                        },
-                        duration: 1,
-                        y: 0,
-                        opacity: 1,
-                        ease: 'power3.out'
-                    });
-                });
-                
-                // Stagger animations for product cards
-                gsap.set('.stagger', { opacity: 0, y: 30 });
-                
-                ScrollTrigger.batch('.stagger', {
-                    start: 'top 80%',
-                    onEnter: batch => gsap.to(batch, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        stagger: 0.2,
-                        ease: 'power3.out'
-                    })
-                });
-                
-                // Parallax effect for story image
-                gsap.to('.perfume-tin-mini', {
-                    scrollTrigger: {
-                        trigger: '.story-visual',
-                        start: 'top bottom',
-                        end: 'bottom top',
-                        scrub: 1
-                    },
-                    y: -50,
-                    rotation: 10,
-                    ease: 'none'
-                });
-            } else {
-                // Fallback if ScrollTrigger is not available
-                document.querySelectorAll('.fade-in, .stagger').forEach(el => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                });
-            }
-        }
-        
-        // Product Modal Functions
-        function openModal(productName) {
-            const modal = document.getElementById('productModal');
-            const products = {
-                'Dawn Garden': {
-                    description: 'A fresh, dewy fragrance that captures the first light of morning. This delicate blend opens with sparkling citrus notes, flows into a heart of white tea and jasmine, and settles into a soft, clean base that lingers gently on your skin.',
-                    notes: ['Top: Bergamot', 'Heart: White Tea', 'Base: Soft Musk']
-                },
-                'Velvet Woods': {
-                    description: 'Warm embrace of sandalwood and amber, grounding and serene. This sophisticated blend evokes walking through a sun-dappled forest, with rich woody notes balanced by creamy vanilla and a touch of spice.',
-                    notes: ['Top: Cardamom', 'Heart: Sandalwood', 'Base: Amber']
-                },
-                'Rose Whisper': {
-                    description: 'Delicate petals and soft musk create an intimate, romantic aura. This feminine fragrance captures the essence of a secret garden at dawn, where roses bloom with quiet elegance.',
-                    notes: ['Top: Pink Pepper', 'Heart: Damask Rose', 'Base: White Musk']
-                }
-            };
-            
-            const product = products[productName];
-            if (product) {
-                document.getElementById('modalTitle').textContent = productName;
-                document.getElementById('modalDescription').textContent = product.description;
-                
-                const notesContainer = document.getElementById('modalNotes');
-                notesContainer.innerHTML = product.notes.map(note => 
-                    `<span class="note-item">${note}</span>`
-                ).join('');
-                
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-        
-        function closeModal() {
-            const modal = document.getElementById('productModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        function notifyMe() {
-            showToast('You\'ll be the first to know when this scent launches!');
-        }
-        
-        // Toast notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            
-            toastMessage.textContent = message;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-        
-        // Tab functionality
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Remove active class from all tabs and contents
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                tab.classList.add('active');
-                
-                // Show corresponding content
-                const tabId = tab.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-        
-        // Form submissions
-        document.querySelector('.contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            showToast('Thank you for your message! We\'ll respond within 24 hours.');
-            e.target.reset();
-        });
-        
-        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            showToast('Welcome to the Sugre family! You\'ll be the first to know when we launch.');
-            e.target.reset();
-        });
-        
-        // Magnetic hover effect for buttons
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('mousemove', (e) => {
-                const rect = button.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                
-                button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
-            });
-            
-            button.addEventListener('mouseleave', () => {
-                button.style.transform = 'translate(0, 0)';
-            });
-        });
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            // ESC key closes modals and mobile menu
-            if (e.key === 'Escape') {
-                closeModal();
-                if (mobileMenu.classList.contains('active')) {
-                    menuToggle.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            }
-        });
-        
-        // Scroll progress indicator
-        const scrollProgress = document.createElement('div');
-        scrollProgress.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #D4AF37, #B8941F);
-            z-index: 10000;
-            transition: width 0.3s ease;
-            width: 0%;
-        `;
-        document.body.appendChild(scrollProgress);
-        
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            scrollProgress.style.width = scrollPercent + '%';
-        });
-        
-        // Intersection Observer for advanced animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-        
-        // Observe elements for animation
-        document.querySelectorAll('.fade-in, .stagger').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Performance monitoring
-        if ('performance' in window) {
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    const perfData = window.performance.timing;
-                    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-                    console.log(`Sugre website loaded in: ${pageLoadTime}ms`);
-                }, 0);
-            });
-        }
     </script>
 </body>
 </html>
